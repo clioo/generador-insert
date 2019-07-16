@@ -41,13 +41,15 @@
             this.button1 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txt_tabla = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmd_openFile
             // 
-            this.cmd_openFile.Location = new System.Drawing.Point(183, 74);
+            this.cmd_openFile.Location = new System.Drawing.Point(183, 67);
             this.cmd_openFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmd_openFile.Name = "cmd_openFile";
             this.cmd_openFile.Size = new System.Drawing.Size(112, 32);
@@ -80,6 +82,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.txt_tabla);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.txt_nombrehoja);
             this.groupBox2.Controls.Add(this.label2);
@@ -90,7 +94,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(458, 213);
+            this.groupBox2.Size = new System.Drawing.Size(458, 278);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Configuración de excel";
@@ -150,7 +154,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(185, 377);
+            this.button1.Location = new System.Drawing.Point(183, 423);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -174,6 +178,23 @@
             this.label4.Size = new System.Drawing.Size(78, 18);
             this.label4.TabIndex = 6;
             this.label4.Text = "Resultado";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(140, 18);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Nombre de la tabla";
+            // 
+            // txt_tabla
+            // 
+            this.txt_tabla.Location = new System.Drawing.Point(8, 220);
+            this.txt_tabla.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_tabla.Name = "txt_tabla";
+            this.txt_tabla.Size = new System.Drawing.Size(430, 26);
+            this.txt_tabla.TabIndex = 7;
             // 
             // Form1
             // 
@@ -212,6 +233,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txt_tabla;
     }
 }
 

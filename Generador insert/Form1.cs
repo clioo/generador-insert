@@ -50,33 +50,57 @@ namespace Generador_insert
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            //if (txt_encabezado.Text == "")
+            //{
+            //    MessageBox.Show("Se necesita fila de encabezados.");
+            //}
+            //else if (txt_filafinal.Text == "")
+            //{
+            //    MessageBox.Show("Se necesita fila final.");
+
+            //}
+            //else if (txt_nombrehoja.Text == "")
+            //{
+            //    MessageBox.Show("Se necesita nombre de la hoja.");
+            //}
+            //else if (txt_tabla.Text == "")
+            //{
+            //    MessageBox.Show("Se necesita nombre de la hoja.");
+            //}
+            //else
+            //{
+
+            //}
             Excel.Application app = new Excel.Application();
-            //Excel.Workbook workBook = new Excel.Workbooks.Open(this.archivo);
-            //Excel._Worksheet xlWorksheet = xlWorkbook.Sheets[1];
-            //Excel.Range xlRange = xlWorksheet.UsedRange;
             Excel.Application xlApp;
             Excel.Workbook xlWorkBook;
             Excel.Worksheet xlWorkSheet;
             Excel.Range range;
             string str;
-            string[] ecabezados = new string[] { };
             int rCnt;
             int cCnt;
             int rw = 0;
             int cl = 0;
-            ecabezados = obtenerEncabezado( Int32.TryParse(txt_encabezado.Text));
+            
             xlApp = new Excel.Application();
             xlWorkBook = xlApp.Workbooks.Open(this.archivo, 
                 0, true, 5, "", "", true, 
                 Microsoft.Office.Interop.Excel.XlPlatform.xlWindows,
                 "\t", false, false, 0, true, 1, 0);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item("Hoja1");
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(txt_nombrehoja.Text.ToString());
             range = xlWorkSheet.UsedRange;
             rw = range.Rows.Count;
             cl = range.Columns.Count;
-            MessageBox.Show(rw.ToString());
-            MessageBox.Show(cl.ToString());
-            
+            //Aquí va el encabezado de la base de datos
+            string[] encabezados = new string[cl - 1];
+            //trabajamos con los encabezados
+
+            for (int i = 1; i < cl; i++)
+            {
+                encabezados[i -1] = (string)(range.Cells[Int32.Parse(txt_encabezado.Text), i] as Excel.Range).Value2;
+            }
+
+
             //for (int i = 0; i < rw; i++)
             //{
             //    str = (string)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
@@ -93,11 +117,6 @@ namespace Generador_insert
             //}
             xlWorkBook.Close(true, null, null);
             xlApp.Quit();
-        }
-        
-        private void obtenerEncabezado(int row)
-        {
-            
         }
     }
 }
