@@ -94,10 +94,45 @@ namespace Generador_insert
             //Aquí va el encabezado de la base de datos
             string[] encabezados = new string[cl - 1];
             //trabajamos con los encabezados
-
+            string sqlColumns = $"INSERT INTO \"{txt_tabla.Text}\"  (";
             for (int i = 1; i < cl; i++)
             {
                 encabezados[i -1] = (string)(range.Cells[Int32.Parse(txt_encabezado.Text), i] as Excel.Range).Value2;
+                sqlColumns += encabezados[i - 1] + ",";
+            }
+            //se agrega al final ya que son calumnas obligatorias   
+            sqlColumns += "created,\"fechaActualizada\",\"fechaRegistrada\", user_id, estado) VALUES (";
+
+            for (int i = Int32.Parse(txt_encabezado.Text) + 1; i <= Int32.Parse(txt_filafinal.Text); i++)
+            {
+                string sentencia = sqlColumns;
+                for (int x= 1; x < cl; x++)
+                {
+                    string celda = (string)(range.Cells[i, x] as Excel.Range).Value2.ToString();
+                    if (x == 5 || x == 6)
+                    {
+                        DateTime conv = DateTime.FromOADate(double.Parse(celda));
+                        sentencia += $"'{conv.ToString("yyyy-MM-dd")}',"; 
+                        continue;
+                    }
+                    else if (x==1)
+                    {
+                        var arr = celda.Split('.');
+                        var id = arr[0].Substring(1);
+                        sentencia += $"'{id}',";
+                        continue;
+                    }
+                    else if (x==2)
+                    {
+                        var arr = celda.Split('-');
+                        var id = arr[0].Substring(1);
+                        sentencia += $"'{id}',";
+                        continue;
+                    }
+                    sentencia += $"'{celda}',";
+                }
+                sentencia += "NOW(), NOW(), NOW(), '1', 'p');";
+                rch_sentencias.AppendText(sentencia + "\n");
             }
 
 
